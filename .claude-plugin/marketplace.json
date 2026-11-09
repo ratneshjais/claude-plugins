@@ -4,8 +4,8 @@
   "owner": { "name": "Ratnesh Jaiswal" },
   "plugins": [
     {
-      "name": "career-log",
-      "source": "./plugins/career-log",
+      "name": "skill-tracker",
+      "source": "./plugins/skill-tracker",
       "description": "Records the technologies and kinds of work in your Claude Code sessions, with no project or client details, and turns them into skill summaries and resume bullets you review yourself."
     }
   ]

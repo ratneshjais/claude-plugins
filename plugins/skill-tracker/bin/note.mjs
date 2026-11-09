@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Save a one-line career note, with project and client details redacted first.
+// Save a one-line work note, with project and client details redacted first.
 // Usage: node bin/note.mjs "Cut checkout page load from 4s to 1.2s by caching shipping rates"
 //        node bin/note.mjs --dry-run "..."   (show what would be saved, save nothing)
 

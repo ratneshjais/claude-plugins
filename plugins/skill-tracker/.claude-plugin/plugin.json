@@ -1,8 +1,8 @@
 {
-  "name": "career-log",
+  "name": "skill-tracker",
   "version": "0.1.0",
   "description": "Quietly records the technologies and kinds of work in your Claude Code sessions, with no project or client details, and turns them into skill summaries and resume bullets you review yourself.",
   "author": { "name": "Ratnesh Jaiswal", "url": "https://ratneshjais.github.io" },
   "license": "MIT",
-  "keywords": ["career", "resume", "skills", "journal", "privacy"]
+  "keywords": ["skills", "skill-tracking", "career", "resume", "privacy"]
 }

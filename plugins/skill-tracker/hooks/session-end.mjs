@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SessionEnd hook: append one anonymous record of the session to ~/.career-log/sessions.jsonl.
+// SessionEnd hook: append one anonymous record of the session to ~/.skill-tracker/sessions.jsonl.
 // It must never block or break Claude Code, so every failure is swallowed and it always exits 0.
 
 import { buildRecord } from "../lib/collect.mjs";
@@ -12,7 +12,7 @@ async function readStdin() {
 }
 
 try {
-  if (process.env.CAREER_LOG_DISABLED !== "1") {
+  if (process.env.SKILL_TRACKER_DISABLED !== "1") {
     const input = JSON.parse((await readStdin()) || "{}");
     const record = buildRecord({ cwd: input.cwd, transcriptPath: input.transcript_path });
     if (record) append("sessions.jsonl", record);

@@ -1,11 +1,11 @@
 ---
-description: Turn your career log into a summary of skills, new technologies and resume-ready bullets, with no client or project names.
+description: Turn your tracked work into a summary of skills, new technologies and resume-ready bullets, with no client or project names.
 argument-hint: "[days, default 30]"
 ---
 
-# Career review
+# Skill review
 
-Summarise the user's career log and suggest how it strengthens their profile.
+Summarise the user's skill tracker and suggest how it strengthens their profile.
 
 Period requested (in days, blank means 30): $ARGUMENTS
 
@@ -18,8 +18,8 @@ Period requested (in days, blank means 30): $ARGUMENTS
    ```
 
    If that path does not resolve, find the script with
-   `ls ~/.claude/plugins/cache/*/career-log/*/bin/review.mjs` and use the newest match.
-   The script only reads `~/.career-log/` (or `$CAREER_LOG_DIR`). Do not open project folders, repositories
+   `ls ~/.claude/plugins/cache/*/skill-tracker/*/bin/review.mjs` and use the newest match.
+   The script only reads `~/.skill-tracker/` (or `$SKILL_TRACKER_DIR`). Do not open project folders, repositories
    or transcripts to add detail: the review must be built only from the log.
 
 2. **Write the review** for the user, in this order:
@@ -34,4 +34,4 @@ Period requested (in days, blank means 30): $ARGUMENTS
 3. **Keep it anonymous.** The output goes on a public profile. If any note still contains a name, URL or
    other identifying detail, leave it out and tell the user which note to fix.
 
-4. **Offer to save** the review as `~/.career-log/reviews/<YYYY-MM-DD>.md`. Write the file only if the user agrees.
+4. **Offer to save** the review as `~/.skill-tracker/reviews/<YYYY-MM-DD>.md`. Write the file only if the user agrees.

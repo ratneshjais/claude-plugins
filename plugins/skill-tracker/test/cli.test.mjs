@@ -8,9 +8,9 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const logDir = fs.mkdtempSync(path.join(os.tmpdir(), "career-log-test-"));
-const env = { ...process.env, CAREER_LOG_DIR: logDir };
-delete env.CAREER_LOG_DISABLED;
+const logDir = fs.mkdtempSync(path.join(os.tmpdir(), "skill-tracker-test-"));
+const env = { ...process.env, SKILL_TRACKER_DIR: logDir };
+delete env.SKILL_TRACKER_DISABLED;
 
 function project() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "initech-shop-"));
@@ -44,7 +44,7 @@ test("the SessionEnd hook appends one anonymous record and exits 0", () => {
 });
 
 test("the hook exits 0 on garbage input and when disabled", () => {
-  for (const extra of [{}, { CAREER_LOG_DISABLED: "1" }]) {
+  for (const extra of [{}, { SKILL_TRACKER_DISABLED: "1" }]) {
     const run = spawnSync("node", [path.join(root, "hooks/session-end.mjs")], { input: "not json", env: { ...env, ...extra } });
     assert.equal(run.status, 0);
   }

@@ -1,11 +1,11 @@
 ---
-description: Save a one-line career note (a win, a skill learned, a problem solved) with all project and client details removed.
+description: Save a one-line work note (a win, a skill learned, a problem solved) with all project and client details removed.
 argument-hint: "[what you did or learned]"
 ---
 
-# Save a career note
+# Save a work note
 
-The user wants to record something from their work for their career profile. What they said:
+The user wants to record something from their work for their skills profile. What they said:
 
 $ARGUMENTS
 
@@ -35,7 +35,7 @@ $ARGUMENTS
    ```
 
    If that path does not resolve, find the script with
-   `ls ~/.claude/plugins/cache/*/career-log/*/bin/note.mjs` and use the newest match.
+   `ls ~/.claude/plugins/cache/*/skill-tracker/*/bin/note.mjs` and use the newest match.
 
 5. **Report** the saved text in one line. If the script redacted anything, mention it so the user can
    rephrase next time.

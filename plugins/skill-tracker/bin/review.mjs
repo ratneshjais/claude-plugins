@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Summarise the career log for a period as Markdown.
+// Summarise the skill tracker for a period as Markdown.
 // Usage: node bin/review.mjs [--days 30]
 
 import { localDate, logDir, readAll } from "../lib/store.mjs";
@@ -35,7 +35,7 @@ const activeDays = new Set(inPeriod.map((s) => s.date)).size;
 const fmt = (rows) => (rows.length ? rows.map(([name, n]) => `${name} (${n})`).join(", ") : "none recorded");
 
 const out = [];
-out.push(`# Career log: last ${days} days (${since} to ${localDate()})`);
+out.push(`# Skill tracker: last ${days} days (${since} to ${localDate()})`);
 out.push("");
 if (inPeriod.length === 0 && notes.filter((n) => n.date >= since).length === 0) {
   out.push(`No sessions or notes recorded in this period. Log folder: ${logDir()}`);
@@ -63,5 +63,5 @@ else out.push(newThisPeriod.length ? newThisPeriod.join(", ") : "Nothing new.");
 out.push("");
 out.push("## Notes");
 const periodNotes = notes.filter((n) => n.date >= since);
-out.push(periodNotes.length ? periodNotes.map((n) => `- ${n.date}: ${n.text}`).join("\n") : "No notes. Add wins with /career-log:note.");
+out.push(periodNotes.length ? periodNotes.map((n) => `- ${n.date}: ${n.text}`).join("\n") : "No notes. Add wins with /skill-tracker:note.");
 console.log(out.join("\n"));

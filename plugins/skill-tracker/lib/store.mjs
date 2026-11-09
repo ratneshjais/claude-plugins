@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 
 export function logDir() {
-  return process.env.CAREER_LOG_DIR || path.join(os.homedir(), ".career-log");
+  return process.env.SKILL_TRACKER_DIR || path.join(os.homedir(), ".skill-tracker");
 }
 
 export function append(file, record) {
