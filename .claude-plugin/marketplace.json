@@ -1,13 +1,11 @@
 {
-  "name": "career-log",
+  "name": "ratnesh-plugins",
   "description": "Ratnesh Jaiswal's personal Claude Code plugins.",
-  "owner": {
-    "name": "Ratnesh Jaiswal"
-  },
+  "owner": { "name": "Ratnesh Jaiswal" },
   "plugins": [
     {
       "name": "career-log",
-      "source": "./",
+      "source": "./plugins/career-log",
       "description": "Records the technologies and kinds of work in your Claude Code sessions, with no project or client details, and turns them into skill summaries and resume bullets you review yourself."
     }
   ]
