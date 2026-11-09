@@ -39,7 +39,7 @@ edit or delete any line.
 
 ## Install
 
-From GitHub (the repo is private, so you need access to it):
+From GitHub:
 
 ```bash
 claude plugin marketplace add ratneshjais/claude-plugins
