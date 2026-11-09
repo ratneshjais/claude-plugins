@@ -1,0 +1,21 @@
+{
+  "company": "Globex",
+  "role": "Senior Laravel Developer",
+  "url": "https://jobs.example.com/globex/123",
+  "location": "Remote, India",
+  "seniority": "Senior",
+  "summary": "Owns the Laravel API behind Globex's booking product, working with a small product team.",
+  "mustHave": ["Laravel", "MySQL", "REST APIs", "Queues"],
+  "niceToHave": ["AWS", "Vue"],
+  "signals": ["\"Ownership\" suggests on-call for the API."],
+  "fit": "Strong fit; AWS is the main gap.",
+  "score": 78,
+  "scoreReason": "All four must-haves (70 of 70), neither nice-to-have (0 of 20), seniority close (8 of 10).",
+  "gaps": {
+    "stated": [{ "skill": "Laravel", "evidence": "Built Laravel APIs for booking systems." }],
+    "unstated": [{ "skill": "REST APIs", "evidence": "skill-tracker log: API work in 14 sessions" }],
+    "missing": [{ "skill": "AWS", "importance": "nice", "plan": "Deploy a small Laravel app on AWS with S3 and SQS." }]
+  },
+  "resumeChanges": [{ "change": "Say \"REST APIs\" in the first bullet.", "why": "The ad uses that phrase." }],
+  "checklist": [{ "item": "Tailor resume", "done": false }, { "item": "Apply", "done": false }]
+}

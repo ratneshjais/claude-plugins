@@ -1,12 +1,19 @@
 {
   "name": "ratnesh-plugins",
   "description": "Ratnesh Jaiswal's personal Claude Code plugins.",
-  "owner": { "name": "Ratnesh Jaiswal" },
+  "owner": {
+    "name": "Ratnesh Jaiswal"
+  },
   "plugins": [
     {
       "name": "skill-tracker",
       "source": "./plugins/skill-tracker",
       "description": "Records the technologies and kinds of work in your Claude Code sessions, with no project or client details, and turns them into skill summaries and resume bullets you review yourself."
+    },
+    {
+      "name": "job-hunt-kit",
+      "source": "./plugins/job-hunt-kit",
+      "description": "Give it a job link and get the role overview, your match score, profile gaps, suggested resume changes and a tailored resume that never invents facts, all tracked in a local dashboard."
     }
   ]
 }

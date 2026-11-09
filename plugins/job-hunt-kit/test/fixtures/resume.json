@@ -1,0 +1,38 @@
+{
+  "name": "Alex Example",
+  "headline": "Full-Stack Developer — PHP, Laravel, React",
+  "location": "Pune, India",
+  "email": "alex@example.com",
+  "phone": "+91 00000 00000",
+  "links": ["github.com/alex-example"],
+  "summary": "Full-stack developer with 6 years building web applications for agencies.",
+  "skills": [
+    { "group": "Languages", "items": ["PHP", "JavaScript", "TypeScript"] },
+    { "group": "Frameworks", "items": ["Laravel", "React", "WordPress"] },
+    { "group": "Data", "items": ["MySQL", "Redis"] }
+  ],
+  "experience": [
+    {
+      "company": "Example Agency",
+      "title": "Software Engineer",
+      "location": "Remote",
+      "start": "Jan 2022",
+      "end": "Present",
+      "duration": "3+ years",
+      "sections": [
+        { "heading": "Client work", "bullets": ["Built Laravel APIs for booking systems.", "Moved image processing to a Redis queue."] },
+        { "bullets": ["Ran monthly dependency updates across client sites."] }
+      ]
+    },
+    {
+      "company": "First Job Ltd",
+      "title": "Developer",
+      "location": "Pune, India",
+      "start": "Jun 2019",
+      "end": "Dec 2021",
+      "duration": "2 years 7 months",
+      "sections": [{ "bullets": ["Maintained PHP and MySQL web applications."] }]
+    }
+  ],
+  "education": [{ "school": "Example University", "degree": "BSc Computer Science", "start": "2015", "end": "2019" }]
+}
