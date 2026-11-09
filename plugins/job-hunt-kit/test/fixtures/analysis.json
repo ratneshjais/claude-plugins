@@ -4,18 +4,101 @@
   "url": "https://jobs.example.com/globex/123",
   "location": "Remote, India",
   "seniority": "Senior",
+  "headline": "**Strong fit**: every must-have covered; AWS is the one gap.",
+  "tldr": [
+    "Owns the **Laravel booking API** in a small product team.",
+    "You cover **all four must-haves**; REST APIs just needs saying.",
+    "Only gap is **AWS** (nice-to-have): one weekend project closes it."
+  ],
   "summary": "Owns the Laravel API behind Globex's booking product, working with a small product team.",
-  "mustHave": ["Laravel", "MySQL", "REST APIs", "Queues"],
-  "niceToHave": ["AWS", "Vue"],
-  "signals": ["\"Ownership\" suggests on-call for the API."],
+  "mustHave": [
+    "Laravel",
+    "MySQL",
+    "REST APIs",
+    "Queues"
+  ],
+  "niceToHave": [
+    "AWS",
+    "Vue"
+  ],
+  "requirements": [
+    {
+      "text": "Laravel",
+      "importance": "must",
+      "status": "have",
+      "note": "Built Laravel APIs for booking systems."
+    },
+    {
+      "text": "REST APIs",
+      "importance": "must",
+      "status": "unstated",
+      "note": "In the skill-tracker log, not on the resume."
+    },
+    {
+      "text": "AWS",
+      "importance": "nice",
+      "status": "gap",
+      "note": "Deploy a small Laravel app with **S3 and SQS**."
+    }
+  ],
+  "signals": [
+    "\"Ownership\" suggests on-call for the API."
+  ],
   "fit": "Strong fit; AWS is the main gap.",
   "score": 78,
+  "scoreBreakdown": [
+    {
+      "label": "Must-haves",
+      "got": 70,
+      "max": 70
+    },
+    {
+      "label": "Nice-to-haves",
+      "got": 0,
+      "max": 20
+    },
+    {
+      "label": "Seniority & domain",
+      "got": 8,
+      "max": 10
+    }
+  ],
   "scoreReason": "All four must-haves (70 of 70), neither nice-to-have (0 of 20), seniority close (8 of 10).",
   "gaps": {
-    "stated": [{ "skill": "Laravel", "evidence": "Built Laravel APIs for booking systems." }],
-    "unstated": [{ "skill": "REST APIs", "evidence": "skill-tracker log: API work in 14 sessions" }],
-    "missing": [{ "skill": "AWS", "importance": "nice", "plan": "Deploy a small Laravel app on AWS with S3 and SQS." }]
+    "stated": [
+      {
+        "skill": "Laravel",
+        "evidence": "Built Laravel APIs for booking systems."
+      }
+    ],
+    "unstated": [
+      {
+        "skill": "REST APIs",
+        "evidence": "skill-tracker log: API work in 14 sessions"
+      }
+    ],
+    "missing": [
+      {
+        "skill": "AWS",
+        "importance": "nice",
+        "plan": "Deploy a small Laravel app on AWS with S3 and SQS."
+      }
+    ]
   },
-  "resumeChanges": [{ "change": "Say \"REST APIs\" in the first bullet.", "why": "The ad uses that phrase." }],
-  "checklist": [{ "item": "Tailor resume", "done": false }, { "item": "Apply", "done": false }]
+  "resumeChanges": [
+    {
+      "change": "Say \"REST APIs\" in the first bullet.",
+      "why": "The ad uses that phrase."
+    }
+  ],
+  "checklist": [
+    {
+      "item": "Tailor resume",
+      "done": false
+    },
+    {
+      "item": "Apply",
+      "done": false
+    }
+  ]
 }

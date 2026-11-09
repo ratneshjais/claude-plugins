@@ -13,7 +13,7 @@ Use `node "${CLAUDE_PLUGIN_ROOT}/bin/jhk.mjs"` (or the newest match of
 1. Pick the application from the slug above, or the most recent one from `jhk list`.
 2. Read its `job.md` and `analysis.json`, the master resume, the tailored `resume.json` if there is one, and
    the skill-tracker review (`--days 365`) if that plugin is installed. Use nothing else.
-3. Redo `gaps`, `score`, `scoreReason`, `fit` and `resumeChanges` with the same rules as `/job-hunt-kit:start`.
+3. Redo `headline`, `tldr`, `requirements`, `gaps`, `score`, `scoreBreakdown`, `scoreReason`, `fit` and `resumeChanges` with the same rules as `/job-hunt-kit:start`, including the short, highlighted writing style. Add any of these fields that an older analysis is missing.
    Keep the rest of `analysis.json` as it is.
 4. Run `jhk dashboard <slug>`.
 5. Tell the user what changed since last time: gaps closed, gaps still open, and the new score.

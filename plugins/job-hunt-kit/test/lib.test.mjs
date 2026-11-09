@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { checkTailored, renderResume, validateResume } from "../lib/resume.mjs";
-import { renderIndex, renderJob, validateAnalysis } from "../lib/dashboard.mjs";
+import { md, renderIndex, renderJob, validateAnalysis } from "../lib/dashboard.mjs";
 import { safeHref } from "../lib/html.mjs";
 import { slugify } from "../lib/store.mjs";
 
@@ -72,9 +72,39 @@ test("the job dashboard shows each section, escapes text and blocks unsafe links
   a.url = "javascript:alert(1)";
   const html = renderJob({ meta: { status: "applied", updated: "2026-11-09" }, analysis: a, files: { jobMd: "job.md" } });
   assert.ok(!html.includes("<img") && !html.includes('href="javascript'));
-  for (const s of ["Senior Laravel Developer", "78", "You have it but don't say it", "REST APIs", "AWS", "Resume changes", "applied"]) {
+  for (const s of ["Senior Laravel Developer", "78", "You have it but don&#39;t say it", "REST APIs", "AWS", "Resume changes", "applied"]) {
     assert.ok(html.includes(s), s);
   }
+});
+
+test("the dashboard leads with verdict, highlights, score bars and a requirement checklist", () => {
+  const html = renderJob({ meta: { status: "researching" }, analysis: load("analysis.json") });
+  assert.ok(html.includes("<mark>Strong fit</mark>"), "headline highlight");
+  assert.ok(html.includes("<mark>Laravel booking API</mark>"), "tldr highlight");
+  assert.ok(html.includes("70/70") && html.includes('style="width:100%"'), "score bars");
+  assert.match(html, /<tr class="have">[\s\S]*✓[\s\S]*Laravel/);
+  assert.match(html, /<tr class="unstated">[\s\S]*◐[\s\S]*REST APIs/);
+  assert.match(html, /<tr class="gap">[\s\S]*✗[\s\S]*AWS/);
+  assert.ok(html.includes("How the score was worked out"), "full reasoning is folded");
+  assert.ok(html.indexOf("verdict") < html.indexOf("Requirements"), "verdict comes first");
+});
+
+test("older analyses without the new fields still render a requirement checklist from the gaps", () => {
+  const a = load("analysis.json");
+  for (const k of ["headline", "tldr", "scoreBreakdown", "requirements"]) delete a[k];
+  const html = renderJob({ analysis: a });
+  assert.ok(html.includes("Strong fit; AWS is the main gap."), "falls back to fit");
+  assert.match(html, /<tr class="have">[\s\S]*Laravel/);
+  assert.match(html, /<tr class="gap">[\s\S]*AWS/);
+});
+
+test("highlight markup cannot inject HTML and bad breakdowns are rejected", () => {
+  assert.equal(md("**<b>x</b>** & y"), "<mark>&lt;b&gt;x&lt;/b&gt;</mark> &amp; y");
+  const a = load("analysis.json");
+  a.scoreBreakdown[0].got = 99;
+  a.requirements[0].status = "maybe";
+  const problems = validateAnalysis(a);
+  assert.ok(problems.some((p) => p.startsWith("scoreBreakdown[0]")) && problems.some((p) => p.startsWith("requirements[0].status")), problems.join());
 });
 
 test("the overview lists applications and counts statuses", () => {
@@ -82,7 +112,7 @@ test("the overview lists applications and counts statuses", () => {
     { slug: "globex-senior-laravel-developer", role: "Senior Laravel Developer", company: "Globex", score: 78, status: "applied" },
     { slug: "initech-php-engineer", role: "PHP Engineer", company: "Initech", status: "researching" },
   ]);
-  assert.ok(html.includes("applied: 1") && html.includes("researching: 1"));
+  assert.ok(html.includes("applied: <b>1</b>") && html.includes("researching: <b>1</b>"));
   assert.ok(html.includes('href="globex-senior-laravel-developer/dashboard.html"'));
   assert.match(renderIndex([]), /No applications yet/);
 });
