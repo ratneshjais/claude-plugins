@@ -1,6 +1,6 @@
 {
   "name": "job-hunt-kit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Give it a job link and get the role overview, your match score, profile gaps, suggested resume changes and a tailored resume that never invents facts, all tracked in a local dashboard.",
   "author": { "name": "Ratnesh Jaiswal", "url": "https://ratneshjais.github.io" },
   "license": "MIT",

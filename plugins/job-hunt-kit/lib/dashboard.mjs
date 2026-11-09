@@ -107,15 +107,18 @@ table.req { width:100%; border-collapse: collapse; }
 .signals { list-style: none; padding: 0; margin: 12px 0 0; display:grid; gap: 6px; }
 .signals li { padding: 8px 12px; background: var(--warn-bg); border-radius: 10px; font-size: 14px; }
 
-.gapgrid { display:grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.gapcol h3 { font-size: 14px; margin: 0 0 8px; }
-.gapcol.have h3 { color: var(--good); } .gapcol.unstated h3 { color: var(--warn); } .gapcol.gap h3 { color: var(--bad); }
+.gapgroup + .gapgroup { margin-top: 18px; }
+.gapgroup h3 { font-size: 14px; margin: 0 0 4px; padding: 6px 10px; border-radius: 8px; display: flex; justify-content: space-between; }
+.gapgroup.have h3 { color: var(--good); background: var(--good-bg); }
+.gapgroup.unstated h3 { color: var(--warn); background: var(--warn-bg); }
+.gapgroup.gap h3 { color: var(--bad); background: var(--bad-bg); }
+.gapgroup h3 .count { font-variant-numeric: tabular-nums; }
+.gapgroup .empty { padding: 6px 10px; margin: 0; }
 details { border-radius: 10px; margin: 6px 0; }
 details > summary { cursor: pointer; list-style: none; padding: 7px 10px; border-radius: 10px; font-weight: 600; font-size: 14px; }
 details > summary::-webkit-details-marker { display:none; }
 details > summary::before { content: "▸"; display:inline-block; width: 14px; color: var(--faint); transition: transform .15s; }
 details[open] > summary::before { transform: rotate(90deg); }
-.gapcol.have summary { background: var(--good-bg); } .gapcol.unstated summary { background: var(--warn-bg); } .gapcol.gap summary { background: var(--bad-bg); }
 details .more { padding: 6px 10px 4px 24px; color: var(--muted); font-size: 13.5px; }
 .empty { color: var(--faint); font-size: 14px; }
 
@@ -191,19 +194,18 @@ function note(text) {
   return `<div class="note">${md(head)}</div>${rest ? `<details class="fold"><summary>More</summary><div class="more">${md(rest)}</div></details>` : ""}`;
 }
 
-function gapColumn(cls, title, items, detail) {
-  const body = items?.length
-    ? items
+/** One group of gaps as full-width rows, styled like the requirements table. */
+function gapGroup(cls, title, items, detail) {
+  const n = items?.length || 0;
+  const rows = n
+    ? `<table class="req">${items
         .map((g) => {
-          const more = detail(g);
           const tag = g.importance ? `<span class="tag ${esc(g.importance)}">${esc(g.importance)}</span>` : "";
-          return more
-            ? `<details><summary>${md(g.skill)}${tag}</summary><div class="more">${md(more)}</div></details>`
-            : `<details><summary>${md(g.skill)}${tag}</summary></details>`;
+          return `<tr class="${cls}"><td class="icon">${ICONS[cls]}</td><td><div class="text">${md(g.skill)}${tag}</div>${note(detail(g))}</td></tr>`;
         })
-        .join("")
+        .join("")}</table>`
     : `<p class="empty">None.</p>`;
-  return `<div class="gapcol ${cls}"><h3>${esc(title)} · ${items?.length || 0}</h3>${body}</div>`;
+  return `<div class="gapgroup ${cls}"><h3><span>${esc(title)}</span><span class="count">${n}</span></h3>${rows}</div>`;
 }
 
 export function renderJob({ meta = {}, analysis: a, files = {} }) {
@@ -256,12 +258,12 @@ export function renderJob({ meta = {}, analysis: a, files = {} }) {
   ${a.signals?.length ? `<ul class="signals">${a.signals.map((s) => `<li>⚠︎ ${md(s)}</li>`).join("")}</ul>` : ""}
 </section>`;
 
-  const gapSection = `<section class="card"><h2>Profile gaps <span style="text-transform:none;letter-spacing:0;font-weight:400">· click any item for the evidence or plan</span></h2>
-  <div class="gapgrid">
-    ${gapColumn("have", "You have it and say it", gaps.stated, (g) => g.evidence)}
-    ${gapColumn("unstated", "You have it but don't say it", gaps.unstated, (g) => g.evidence)}
-    ${gapColumn("gap", "Real gaps", gaps.missing, (g) => g.plan)}
-  </div></section>`;
+  // Real gaps first: they are what the user acts on.
+  const gapSection = `<section class="card"><h2>Profile gaps</h2>
+    ${gapGroup("gap", "Real gaps", gaps.missing, (g) => g.plan)}
+    ${gapGroup("unstated", "You have it but don't say it", gaps.unstated, (g) => g.evidence)}
+    ${gapGroup("have", "You have it and say it", gaps.stated, (g) => g.evidence)}
+  </section>`;
 
   const changes = a.resumeChanges?.length
     ? `<section class="card"><h2>Resume changes</h2><ol class="changes">${a.resumeChanges

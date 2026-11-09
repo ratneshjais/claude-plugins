@@ -89,6 +89,16 @@ test("the dashboard leads with verdict, highlights, score bars and a requirement
   assert.ok(html.indexOf("verdict") < html.indexOf("Requirements"), "verdict comes first");
 });
 
+test("profile gaps are full-width rows, real gaps first, with evidence shown without a click", () => {
+  const html = renderJob({ analysis: load("analysis.json") });
+  const section = html.slice(html.indexOf("Profile gaps"));
+  const order = ["Real gaps", "You have it but don&#39;t say it", "You have it and say it"].map((t) => section.indexOf(t));
+  assert.ok(order.every((i) => i > 0) && order[0] < order[1] && order[1] < order[2], order.join());
+  assert.ok(section.includes("Deploy a small Laravel app on AWS with S3 and SQS."), "plan visible");
+  assert.ok(section.includes("skill-tracker log: API work in 14 sessions"), "evidence visible");
+  assert.ok(!html.includes("gapcol"), "old column layout gone");
+});
+
 test("older analyses without the new fields still render a requirement checklist from the gaps", () => {
   const a = load("analysis.json");
   for (const k of ["headline", "tldr", "scoreBreakdown", "requirements"]) delete a[k];
